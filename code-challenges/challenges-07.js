@@ -22,7 +22,7 @@
 
 const objLat = (obj) => {
     
-    var x ;
+    let x ;
   
     x="my name is "+  
     obj.firstName.charAt(0).toUpperCase() +  
@@ -30,6 +30,7 @@ const objLat = (obj) => {
     obj.lastName.charAt(0).toUpperCase() + 
     obj.lastName.slice(1)+" I am "+ obj.age + 
     " YO, and I love " + obj.hobby+"." ;
+    return x 
 };
 // -------------------------------------------------------------------------------------------------------
 
