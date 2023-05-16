@@ -15,18 +15,22 @@
 //
 
 const recursionPattern = (int1, int2) => {
-    const arr=[];
 
-    for(let i =int1; i>=-4; i-=int2){
-        arr.push(i);
+    if (int1 <= -4) {
+
+      return [int1, ...recursionPattern(int1 + int2, int2), int1];
+
+    } else if (int1 !== int2) {
+
+      return [int1, ...recursionPattern(int1 - int2, int2), int1];
+
+    } else {
+
+      return [int1];
+      
     }
-
-    for(let i =arr[arr.length-1]+int2; i<=int1; i+=int2){
-        arr.push(i);
-    }
-
-    return arr;
-}
+  };
+  
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
