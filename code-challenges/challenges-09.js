@@ -114,8 +114,21 @@ const roundDecimals = (arr) => {
 //
 
 const employeesBonus = (arr) => {
-    // write your code here
-}
+  const updatedData = arr.map((employee) => {
+    if (employee.workHours > 8) {
+      
+      employee.salary = (parseInt(employee.salary) + 100) + "$";
+    } else {
+
+      employee.salary = (parseInt(employee.salary) + 50) + "$";
+    }
+    return employee;
+
+  });
+
+  return updatedData;
+};
+
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
