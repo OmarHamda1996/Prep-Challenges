@@ -15,22 +15,27 @@
 //
 
 const recursionPattern = (int1, int2) => {
+ 
+    const arr = [];
 
-    if (int1 <= -4) {
+    const recurse = (num) => {
 
-      return [int1, ...recursionPattern(int1 + int2, int2), int1];
+        if (num <= 0) {
 
-    } else if (int1 !== int2) {
+            arr.push(num);
 
-      return [int1, ...recursionPattern(int1 - int2, int2), int1];
+            return;
+        }
 
-    } else {
+        arr.push(num);
 
-      return [int1];
-      
+        recurse(num - int2);
+        
+        arr.push(num);
     }
-  };
-  
+    recurse(int1);
+    return arr;
+}
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
