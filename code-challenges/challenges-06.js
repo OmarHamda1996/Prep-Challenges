@@ -13,12 +13,12 @@
 
 const findMax = (arr)=>{
     let max;
-    max = arr[0];
-    for (let i = 1; i < arr.length; i++) {
+    max = arr[0]
+      for (let i = 1; i < arr.length; i++) {
     if (arr[i] > max) {
-          max = arr[i];
-        }
-      }
+      max = arr[i];
+    }
+  }
     return max;
 }
 // -------------------------------------------------------------------------------------------------------
@@ -34,26 +34,22 @@ const findMax = (arr)=>{
 // Output: 81
 //  
 
+const sumNums = (arr) => {
+  let sum = 0;
 
-const sumNums = (arr)=>{
-    let sum;
-    sum = 0
-    for (let i = 0; i < arr.length; i++) {
-    if (typeof arr[i] === "number") {
-          sum += arr[i];
-        } else if (!isNaN(parseFloat(arr[i])) && isFinite(arr[i])) {
-          sum += parseFloat(arr[i]);
-        }
-      }
-    return sum;
-}
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] === 'number') {
+      sum += arr[i];
+    }
+  }
 
-
+  return sum;
+};
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
 //  Challenge 03:
-//  optional:
+//  Required:
 //
 //  Write a function that takes an array and returns the array reversed
 //  without using built-in functions
@@ -61,9 +57,15 @@ const sumNums = (arr)=>{
 // Input: ['C#', 'JS', 'Ruby','Python'] 
 // Output: ['Python','Ruby','JS','C#']
 
-const reverseArray = (arr)=>{
-    // write your code here
-}
+const reverseArray = (arr) => {
+  const reversed = [];
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    reversed.push(arr[i]);
+  }
+
+  return reversed;
+};
 // -------------------------------------------------------------------------------------------------------
 
 module.exports = {findMax , sumNums, reverseArray};
