@@ -21,15 +21,16 @@
 //  2- The first letters of the firstName and lastName should be capital letter
 
 const objLat = (obj) => {
+
+    const { firstName, lastName, age, hobby } = obj;
+
+    const formattedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+
+    const formattedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
     
-    var x ;
-  
-    x="my name is "+  
-    obj.firstName.charAt(0).toUpperCase() +  
-    obj.firstName.slice(1) +  " " +
-    obj.lastName.charAt(0).toUpperCase() + 
-    obj.lastName.slice(1)+" I am "+ obj.age + 
-    " YO, and I love " + obj.hobby+"." ;
+    const formattedText = `my name is ${formattedFirstName} ${formattedLastName} I am ${age} YO, and I love ${hobby}.`;
+    
+    return formattedText;
 };
 // -------------------------------------------------------------------------------------------------------
 
@@ -93,36 +94,26 @@ const objLat = (obj) => {
 //  2- If one of the names is null don`t add it to the full name
 
 const cvFormatter = (arr) => {
-    const arr2 =[]; 
+    return arr.map((cv) => {
+        const { firstName, lastName, yearsOfExperience, tech } = cv;
 
- for (let x =0 ;x<arr.length ;x++){
- 
-    let obj2 =new Object;
-    if(arr[x].yearsOfExperience > 1){
-    
+        if (yearsOfExperience > 1) {
+            let fullName = '';
 
-      
-     if(  arr[x].firstName ==null){
-                 obj2.fullName = arr[x].lastName;
-          }else if(arr[x].lastName ==null){
-    
-            obj2.fullName = arr[x].firstName;
-           }else{
-
-            obj2.fullName = arr[x].firstName +" "+arr[x].lastName;
-          
+            if (firstName && lastName) {
+                fullName = `${firstName} ${lastName}`;
+            } else if (firstName) {
+                fullName = firstName;
+            } else if (lastName) {
+                fullName = lastName;
             }
 
-   
-        
-
-        obj2.tech = arr[x].tech;
-        arr2.push(obj2);
-        
-    }
-}
-
-return arr2;
+            return {
+                fullName,
+                tech
+            };
+        }
+    }).filter(Boolean);
 };
 // -------------------------------------------------------------------------------------------------------
 
@@ -148,8 +139,47 @@ return arr2;
 //  1- rejectedApplicants are applications that has both the names empty or null and whoever have one year or less of Experience
 
 const applicationsStatics = (arr) => {
-    // write your code here
+    let result = {
+        python_devs: 0,
+        javaScript_devs: 0,
+        dotNet_devs: 0,
+        java_devs: 0,
+        totalApplicants: 0,
+        rejectedApplicants: 0,
+    };
+
+    arr.forEach((cv) => {
+        const { firstName, lastName, yearsOfExperience, tech } = cv;
+        const fullName = firstName && lastName ? `${firstName} ${lastName}` : firstName || lastName;
+
+        
+        result.totalApplicants++;
+        
+        if (!fullName && yearsOfExperience <= 1) {
+            result.rejectedApplicants++;
+            return;
+        }
+
+        
+        switch (tech) {
+            case "Python":
+                result.python_devs++;
+                break;
+            case "JS":
+                result.javaScript_devs++;
+                break;
+            case ".Net":
+                result.dotNet_devs++;
+                break;
+            case "Java":
+                result.java_devs++;
+                break;
+        }
+    });
+
+    return result;
 };
+
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
@@ -275,7 +305,13 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    // write your code here
+    data.grades.forEach((grade) => {
+        grade.classes.forEach((classInfo) => {
+            const sum = classInfo.classScores.reduce((total, score) => total + score, 0);
+            const avg = Math.floor(sum / classInfo.classScores.length);
+            classInfo.avg = avg;
+        });
+    });
 };
 // -------------------------------------------------------------------------------------------------------
 
